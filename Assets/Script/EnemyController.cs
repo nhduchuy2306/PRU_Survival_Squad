@@ -26,6 +26,9 @@ public class EnemyController : MonoBehaviour
 
     public int expToGive = 1;
 
+    public int coinValue = 1;
+    public float coinDropRate = .5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,10 @@ public class EnemyController : MonoBehaviour
             {
                 Destroy(gameObject);
                 ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
+                if(Random.value <= coinDropRate)
+                {
+                    CoinController.instance.DropCoin(transform.position, coinValue);
+                }
             }
             
         }

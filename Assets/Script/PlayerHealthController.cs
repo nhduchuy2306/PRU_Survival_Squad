@@ -23,7 +23,7 @@ public class PlayerHealthController : MonoBehaviour
     void Start()
     {
         /*maxHealth = PlayerStatController.instance.health[0].value;*/
-
+        maxHealth = PlayerStatController.instance.health[0].value;
         currentHealth = maxHealth;
 
         healthSlider.maxValue = maxHealth;
@@ -33,10 +33,7 @@ public class PlayerHealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10f);
-        }
+       
     }
 
     public void TakeDamage(float damageToTake)
@@ -45,7 +42,10 @@ public class PlayerHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            PlayerController.instance.anim.SetBool("isDead", true);
+            gameObject.GetComponent<PlayerController>().enabled = false;
+            GameObject.Find("Weapon").active = false;
+            /*gameObject.SetActive(false);*/
 
 /*            LevelManager.instance.EndLevel();
 
