@@ -45,13 +45,8 @@ public class PlayerHealthController : MonoBehaviour
             PlayerController.instance.anim.SetBool("isDead", true);
             gameObject.GetComponent<PlayerController>().enabled = false;
             GameObject.Find("Weapon").active = false;
-            /*gameObject.SetActive(false);*/
-
-/*            LevelManager.instance.EndLevel();
-
-            Instantiate(deathEffect, transform.position, transform.rotation);
-
-            SFXManager.instance.PlaySFX(3);*/
+            LevelManager.instance.EndLevel();
+            
         }
 
         healthSlider.value = currentHealth;

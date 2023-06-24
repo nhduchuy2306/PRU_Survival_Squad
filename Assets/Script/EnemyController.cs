@@ -40,43 +40,50 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(knockBackCounter > 0)
+        if (PlayerController.instance.gameObject.activeSelf)
         {
-            knockBackCounter -= Time.deltaTime;
-
-            if(moveSpeed > 0)
+            if (knockBackCounter > 0)
             {
-                moveSpeed = -moveSpeed * 2;
+                knockBackCounter -= Time.deltaTime;
 
-            }
-
-            if(knockBackCounter <= 0)
-            {
-                moveSpeed = Mathf.Abs(moveSpeed * .5f);
-            }
-        }
-
-
-        theRB.velocity = (target.position - transform.position).normalized * moveSpeed;
-
-        if (hitCounter > 0f)
-        {
-            hitCounter -= Time.deltaTime;
-        }   
-
-        if(destroyCounter > 0)
-        {
-            destroyCounter -= Time.deltaTime;
-            if (destroyCounter <= 0)
-            {
-                Destroy(gameObject);
-                ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
-                if(Random.value <= coinDropRate)
+                if (moveSpeed > 0)
                 {
-                    CoinController.instance.DropCoin(transform.position, coinValue);
+                    moveSpeed = -moveSpeed * 2;
+
+                }
+
+                if (knockBackCounter <= 0)
+                {
+                    moveSpeed = Mathf.Abs(moveSpeed * .5f);
                 }
             }
-            
+
+
+            theRB.velocity = (target.position - transform.position).normalized * moveSpeed;
+
+            if (hitCounter > 0f)
+            {
+                hitCounter -= Time.deltaTime;
+            }
+
+            if (destroyCounter > 0)
+            {
+                destroyCounter -= Time.deltaTime;
+                if (destroyCounter <= 0)
+                {
+                    Destroy(gameObject);
+                    ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
+                    if (Random.value <= coinDropRate)
+                    {
+                        CoinController.instance.DropCoin(transform.position, coinValue);
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            theRB.velocity = Vector2.zero;
         }
     }
 
@@ -97,7 +104,7 @@ public class EnemyController : MonoBehaviour
         health -= damageToTake;
         animator.SetTrigger("Hit");
 
-        if(health <= 0f)
+        if (health <= 0f)
         {
             animator.SetBool("Dead", true);
             destroyCounter = destroyWaitTime;
