@@ -25,6 +25,7 @@ public class EnemyDamager : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             collision.GetComponent<EnemyController>().TakeDamage(damageAmount, shouldKnockBack);
+            FindObjectOfType<AudioManager>().Play("BulletHitSound");
             Destroy(gameObject);
         }
     }

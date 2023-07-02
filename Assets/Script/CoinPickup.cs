@@ -47,8 +47,9 @@ public class CoinPickup : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            
             CoinController.instance.AddCoins(coinAmount);
-
+            
             Destroy(gameObject);
         }
     }

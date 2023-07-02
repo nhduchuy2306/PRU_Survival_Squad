@@ -91,6 +91,8 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && hitCounter <= 0f)
         {
+            FindObjectOfType<AudioManager>().Play("BulletHitSound");
+
             PlayerHealthController.instance.TakeDamage(damage);
 
             hitCounter = hitWaitTime;

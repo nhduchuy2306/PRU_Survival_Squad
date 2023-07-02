@@ -29,17 +29,22 @@ public class UIController : MonoBehaviour
 
     public GameObject levelEndScreen;
     public TMP_Text endTimeText;
+    public GameObject pauseMenu;
+    [SerializeField] private Slider volumeSlider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        float volumeValue = PlayerPrefs.GetFloat("Volume", 0.5f);
+        Debug.Log("Volume: " + volumeValue);
+        volumeSlider.value = volumeValue;
+        AudioListener.volume = volumeValue;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ShowPauseScreen();
     }
 
     public void UpdateExperience(int currentExp, int levelExp, int currentLvl)
@@ -89,12 +94,54 @@ public class UIController : MonoBehaviour
 
     public void GoToMainMenu()
     {
-
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
+    }
+
+    public void ShowPauseScreen()
+    {
+        // Press escape to pause
+        if(Input.GetKeyDown(KeyCode.Escape) && !levelEndScreen.activeInHierarchy)
+        {
+            Debug.Log("Pause");
+            if(pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                Debug.Log("Pause no active");
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+    }
+
+    public void ResumeInPauseScreen()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void QuitInPauseScreen()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SaveSettings()
+    {
+        float volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("Volume", volume);
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume;
     }
 }

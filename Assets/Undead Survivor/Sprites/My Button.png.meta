@@ -309,10 +309,10 @@ TextureImporter:
       name: My Button_9
       rect:
         serializedVersion: 2
-        x: 3210
+        x: 3222
         y: 259
-        width: 638
-        height: 660
+        width: 626
+        height: 646
       alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -20,9 +20,11 @@ public class CoinController : MonoBehaviour
     {
         currentCoins += coinsToAdd;
 
-       UIController.instance.UpdateCoins();
+        UIController.instance.UpdateCoins();
 
-       // SFXManager.instance.PlaySFXPitched(2);
+        FindObjectOfType<AudioManager>().Play("SelectSound");
+
+        // SFXManager.instance.PlaySFXPitched(2);
     }
 
     public void DropCoin(Vector3 position, int value)
