@@ -3800,35 +3800,42 @@ MonoBehaviour:
   - name: DeathSound
     type: sfx
     clip: {fileID: 8300000, guid: 291608b8d286e2a4580ff36324455ce2, type: 3}
-    volume: 0.354
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: SelectSound
     type: sfx
     clip: {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
-    volume: 0.46
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: BulletHitSound
     type: sfx
     clip: {fileID: 8300000, guid: 6b7eaf4532a2f614595ad58d2b86efc4, type: 3}
-    volume: 0.46
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: PlayerHitSound
     type: sfx
     clip: {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
-    volume: 0.46
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: LevelUpSound
     type: sfx
     clip: {fileID: 8300000, guid: 64795b87003c2324fa0814fbc336066c, type: 3}
-    volume: 0.46
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LoseSound
+    type: sfx
+    clip: {fileID: 8300000, guid: c8a3fe17a6641ec48b38fb455a40a223, type: 3}
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}

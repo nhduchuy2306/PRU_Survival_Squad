@@ -65,6 +65,8 @@ public class ExperienceLevelController : MonoBehaviour
             currentLevel = expLevels.Count - 1;
         }
 
+        FindObjectOfType<AudioManager>().Play("LevelUpSound");
+
         // PlayerController.instance.activeWeapon.LevelUp();
         UIController.instance.levelUpPanel.SetActive(true);
 

@@ -47,6 +47,9 @@ public class LevelManager : MonoBehaviour
 
         UIController.instance.endTimeText.text = minutes.ToString() + " mins " + seconds.ToString("00" + " secs");
         UIController.instance.levelEndScreen.SetActive(true);
+        
+        FindObjectOfType<AudioManager>().Play("LoseSound");
+
         PlayerController.instance.gameObject.SetActive(false);
     }
 }

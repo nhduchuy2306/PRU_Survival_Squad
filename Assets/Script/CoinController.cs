@@ -31,12 +31,14 @@ public class CoinController : MonoBehaviour
     {
         CoinPickup newCoin = Instantiate(coin, position + new Vector3(.2f, .1f, 0f), Quaternion.identity);
         newCoin.coinAmount = value;
+        FindObjectOfType<AudioManager>().Play("SelectSound");
         newCoin.gameObject.SetActive(true);
     }
 
     public void SpendCoins(int coinsToSpend)
     {
         currentCoins -= coinsToSpend;
+        FindObjectOfType<AudioManager>().Play("SelectSound");
 
         UIController.instance.UpdateCoins();
     }
