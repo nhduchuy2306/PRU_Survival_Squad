@@ -47,6 +47,7 @@ public class ExpPickUp : MonoBehaviour
         if(collision.tag == "Player")
         {
             ExperienceLevelController.instance.GetExp(expValue);
+            FindObjectOfType<AudioManager>().Play("PickupSound");
 
             Destroy(gameObject);
         }
