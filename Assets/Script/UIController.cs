@@ -31,12 +31,38 @@ public class UIController : MonoBehaviour
     public TMP_Text endTimeText;
     public GameObject pauseMenu;
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Toggle sfxToggle;
+    [SerializeField] private Toggle themeToggle;
 
     // Start is called before the first frame update
     void Start()
     {
         float volumeValue = PlayerPrefs.GetFloat("Volume", 0.5f);
-        Debug.Log("Volume: " + volumeValue);
+        int sfxToggleValue = PlayerPrefs.GetInt("SFX", 1);
+        int themeToggleValue = PlayerPrefs.GetInt("Theme", 1);
+
+        if (sfxToggleValue == 1)
+        {
+            sfxToggle.isOn = true;
+            FindObjectOfType<AudioManager>().ActiveSoundEffects();
+        }
+        else
+        {
+            sfxToggle.isOn = false;
+            FindObjectOfType<AudioManager>().DeActiveAllSoundEffects();
+        }
+
+        if (themeToggleValue == 1)
+        {
+            themeToggle.isOn = true;
+            FindObjectOfType<AudioManager>().Play("ThemeSound");
+        }
+        else
+        {
+            themeToggle.isOn = false;
+            FindObjectOfType<AudioManager>().Stop("ThemeSound");
+        }
+
         volumeSlider.value = volumeValue;
         AudioListener.volume = volumeValue;
     }
@@ -134,14 +160,64 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void SaveSettings()
+    public void SetOnOffSfxToggle()
     {
-        float volume = volumeSlider.value;
-        PlayerPrefs.SetFloat("Volume", volume);
+        if (sfxToggle.isOn)
+        {
+            PlayerPrefs.SetInt("SFX", 1);
+            sfxToggle.isOn = true;
+            FindObjectOfType<AudioManager>().ActiveSoundEffects();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SFX", 0);
+            sfxToggle.isOn = false;
+            FindObjectOfType<AudioManager>().DeActiveAllSoundEffects();
+        }
+    }
+
+    public void SetOnOffThemeToggle()
+    {
+        if (themeToggle.isOn)
+        {
+            PlayerPrefs.SetInt("Theme", 1);
+            themeToggle.isOn = true;
+            FindObjectOfType<AudioManager>().Play("ThemeSound");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Theme", 0);
+            themeToggle.isOn = false;
+            FindObjectOfType<AudioManager>().Stop("ThemeSound");
+        }
     }
 
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+    }
+
+    public void SaveSettings()
+    {
+        float volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("Volume", volume);
+
+        if (sfxToggle.isOn)
+        {
+            PlayerPrefs.SetInt("SFX", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SFX", 0);
+        }
+
+        if (themeToggle.isOn)
+        {
+            PlayerPrefs.SetInt("Theme", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Theme", 0);
+        }
     }
 }
