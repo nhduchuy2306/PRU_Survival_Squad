@@ -3735,7 +3735,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SelectSound
     type: sfx
-    clip: {fileID: 8300000, guid: 32418020f1971894dbae637c4fb11a10, type: 3}
+    clip: {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
     volume: 0.8
     pitch: 1
     loop: 0
@@ -3774,6 +3774,20 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: InGameSound
+    type: theme
+    clip: {fileID: 8300000, guid: f870f407e1d8e8441be05eaa87e8345c, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: PickupSound
+    type: theme
+    clip: {fileID: 8300000, guid: 32418020f1971894dbae637c4fb11a10, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &1816529318
 Transform:

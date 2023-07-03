@@ -40,6 +40,7 @@ public class UIController : MonoBehaviour
         float volumeValue = PlayerPrefs.GetFloat("Volume", 0.5f);
         int sfxToggleValue = PlayerPrefs.GetInt("SFX", 1);
         int themeToggleValue = PlayerPrefs.GetInt("Theme", 1);
+        FindObjectOfType<AudioManager>().Stop("ThemeSound");
 
         if (sfxToggleValue == 1)
         {
@@ -55,12 +56,12 @@ public class UIController : MonoBehaviour
         if (themeToggleValue == 1)
         {
             themeToggle.isOn = true;
-            FindObjectOfType<AudioManager>().Play("ThemeSound");
+            FindObjectOfType<AudioManager>().Play("InGameSound");
         }
         else
         {
             themeToggle.isOn = false;
-            FindObjectOfType<AudioManager>().Stop("ThemeSound");
+            FindObjectOfType<AudioManager>().Stop("InGameSound");
         }
 
         volumeSlider.value = volumeValue;

@@ -50,6 +50,7 @@ public class CoinPickup : MonoBehaviour
             
             CoinController.instance.AddCoins(coinAmount);
             
+            FindObjectOfType<AudioManager>().Play("PickupSound");
             Destroy(gameObject);
         }
     }
