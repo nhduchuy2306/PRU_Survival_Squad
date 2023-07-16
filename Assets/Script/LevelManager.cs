@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,9 +18,11 @@ public class LevelManager : MonoBehaviour
 
     public float waitToShowEndScreen = 1f;
 
+    private string userID;
     // Start is called before the first frame update
     void Start()
     {
+        userID = SystemInfo.deviceUniqueIdentifier;
         gameActive = true;
     }
 
@@ -47,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
         UIController.instance.endTimeText.text = minutes.ToString() + " mins " + seconds.ToString("00" + " secs");
         UIController.instance.levelEndScreen.SetActive(true);
-        
+
         FindObjectOfType<AudioManager>().Play("LoseSound");
 
         PlayerController.instance.gameObject.SetActive(false);

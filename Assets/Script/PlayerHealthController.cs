@@ -33,7 +33,7 @@ public class PlayerHealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
     public void TakeDamage(float damageToTake)
@@ -46,9 +46,9 @@ public class PlayerHealthController : MonoBehaviour
             FindObjectOfType<AudioManager>().Stop("InGameSound");
             PlayerController.instance.anim.SetBool("isDead", true);
             gameObject.GetComponent<PlayerController>().enabled = false;
-            GameObject.Find("Weapon").active = false;
+            GameObject.Find("Weapon").SetActive(false);
             LevelManager.instance.EndLevel();
-            
+
         }
 
         healthSlider.value = currentHealth;

@@ -1,0 +1,22 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class User
+{
+    // Start is called before the first frame update
+    public string userName;
+    public int userScore;
+
+    public User()
+    {
+    }
+
+    public User(string userName, int userScore)
+    {
+        this.userName = userName;
+        this.userScore = userScore;
+    }
+}
