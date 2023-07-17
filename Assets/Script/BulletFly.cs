@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletFly : MonoBehaviour
 {
 
-    [SerializeField] protected int moveSpeed = 9;
+    [SerializeField] protected int moveSpeed = 20;
     [SerializeField] protected Vector3 direction = Vector3.right;
     // Start is called before the first frame update
     void Start()

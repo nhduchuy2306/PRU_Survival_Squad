@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10349d93e341d3d4a9a55934dea3a310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
+  moveSpeed: 20
   direction: {x: 1, y: 0, z: 0}
 --- !u!114 &-6146193021220194956
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldKnockBack: 1
-  damageAmount: 5
+  damageAmount: 2
 --- !u!58 &1134050853586221449
 CircleCollider2D:
   m_ObjectHideFlags: 0
