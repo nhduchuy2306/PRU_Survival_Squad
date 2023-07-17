@@ -1,12 +1,25 @@
+using TMPro;
+using Proyecto26;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Toggle sfxToggle;
     [SerializeField] private Toggle themeToggle;
+    public string inputName = "USER";
+    //input field object
+    public TMP_InputField tmpInputField;
+    public string userID;
 
     public void Start()
     {
@@ -29,7 +42,7 @@ public class MainMenu : MonoBehaviour
             FindObjectOfType<AudioManager>().DeActiveAllSoundEffects();
         }
 
-        if(themeToggleValue == 1)
+        if (themeToggleValue == 1)
         {
             themeToggle.isOn = true;
             FindObjectOfType<AudioManager>().Play("ThemeSound");
@@ -39,13 +52,41 @@ public class MainMenu : MonoBehaviour
             themeToggle.isOn = false;
             FindObjectOfType<AudioManager>().Stop("ThemeSound");
         }
-        
+
         volumeSlider.value = volumeValue;
         AudioListener.volume = volumeValue;
+
+        userID = SystemInfo.deviceUniqueIdentifier;
+        GetUser();
+        tmpInputField.onEndEdit.AddListener(TextMeshUpdated);
+    }
+
+    private void GetUser()
+    {
+        User user = new();
+        string url = "https://unity-pru-d6912-default-rtdb.asia-southeast1.firebasedatabase.app/users/" + userID + ".json";
+        RestClient.Get<User>(url).Then(res =>
+        {
+            if (res != null)
+            {
+                user = res;
+                inputName = user.userName.Trim();
+                tmpInputField.text = inputName;
+            }
+        }).Catch(err =>
+        {
+            Debug.Log("New user");
+        });
+    }
+
+    public void TextMeshUpdated(string text)
+    {
+        inputName = text;
     }
 
     public void StartGame()
     {
+        Debug.Log("start: " + inputName);
         SceneManager.LoadSceneAsync("Main");
     }
 
@@ -86,7 +127,7 @@ public class MainMenu : MonoBehaviour
             themeToggle.isOn = false;
             FindObjectOfType<AudioManager>().Stop("ThemeSound");
         }
-    }   
+    }
 
 
     public void SetVolume(float volume)
@@ -99,7 +140,7 @@ public class MainMenu : MonoBehaviour
         float volume = volumeSlider.value;
         PlayerPrefs.SetFloat("Volume", volume);
 
-        if(sfxToggle.isOn)
+        if (sfxToggle.isOn)
         {
             PlayerPrefs.SetInt("SFX", 1);
         }
@@ -108,7 +149,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("SFX", 0);
         }
 
-        if(themeToggle.isOn)
+        if (themeToggle.isOn)
         {
             PlayerPrefs.SetInt("Theme", 1);
         }

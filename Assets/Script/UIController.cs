@@ -23,12 +23,13 @@ public class UIController : MonoBehaviour
 
     public TMP_Text coinText;
 
-    public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay ;
+    public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay;
 
     public TMP_Text timeText;
 
     public GameObject levelEndScreen;
     public TMP_Text endTimeText;
+    public TMP_Text bestText;
     public GameObject pauseMenu;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Toggle sfxToggle;
@@ -133,10 +134,10 @@ public class UIController : MonoBehaviour
     public void ShowPauseScreen()
     {
         // Press escape to pause
-        if(Input.GetKeyDown(KeyCode.Escape) && !levelEndScreen.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelEndScreen.activeInHierarchy)
         {
             Debug.Log("Pause");
-            if(pauseMenu.activeInHierarchy)
+            if (pauseMenu.activeInHierarchy)
             {
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1f;

@@ -8,13 +8,13 @@ public class User
 {
     // Start is called before the first frame update
     public string userName;
-    public int userScore;
+    public float userScore;
 
     public User()
     {
     }
 
-    public User(string userName, int userScore)
+    public User(string userName, float userScore)
     {
         this.userName = userName;
         this.userScore = userScore;

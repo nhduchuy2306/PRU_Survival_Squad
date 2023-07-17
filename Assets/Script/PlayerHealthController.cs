@@ -46,7 +46,7 @@ public class PlayerHealthController : MonoBehaviour
             FindObjectOfType<AudioManager>().Stop("InGameSound");
             PlayerController.instance.anim.SetBool("isDead", true);
             gameObject.GetComponent<PlayerController>().enabled = false;
-            GameObject.Find("Weapon").SetActive(false);
+            GameObject.Find("Weapon")?.SetActive(false);
             LevelManager.instance.EndLevel();
 
         }
