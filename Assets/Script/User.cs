@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,3 +21,4 @@ public class User
         this.userScore = userScore;
     }
 }
+
